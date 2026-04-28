@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__AppPage</target>
+        <target>lightning__RecordPage</target>
+        <target>lightning__HomePage</target>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <masterLabel>Account Map Search</masterLabel>
+    <description>Search and display service provider accounts on an interactive map with filtering by name, type, category, and ZIP code</description>
+    <targetConfigs>
+        <targetConfig targets="lightning__AppPage,lightning__HomePage,lightning__RecordPage">
+            <property name="title" type="String" default="Service Provider Search" label="Title" description="Main title text displayed at the top of the component"/>
+            <property name="subtitle" type="String" default="" label="Subtitle" description="Subtitle text displayed below the title (optional)"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

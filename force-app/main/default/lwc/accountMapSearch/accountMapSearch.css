@@ -1,0 +1,117 @@
+.map-container {
+    height: 500px;
+    width: 100%;
+    padding: 1rem;
+}
+
+.table-row {
+    cursor: pointer;
+}
+
+.table-row:hover {
+    background-color: #f3f3f3;
+}
+
+.legend-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0.5rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 150px;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .map-container {
+        height: 400px;
+    }
+    
+    .legend-container {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .legend-item {
+        min-width: 100%;
+    }
+}
+
+/* Loading state */
+.slds-spinner_container {
+    position: relative;
+    min-height: 200px;
+}
+
+/* Table styling enhancements */
+.slds-table_bordered {
+    border: 1px solid #dddbda;
+}
+
+.slds-text-link {
+    color: #0070d2;
+    font-weight: 600;
+}
+
+.slds-text-link:hover {
+    text-decoration: underline;
+}
+
+/* Search form spacing */
+.slds-gutters {
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+}
+
+.slds-gutters > .slds-col {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Type indicator badge */
+.type-indicator {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+    vertical-align: middle;
+}
+
+/* Component header styling */
+.component-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.slds-card__header-title {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.25;
+    margin: 0;
+}
+
+.component-subtitle {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: #3e3e3c;
+    margin: 0.25rem 0 0 0;
+    line-height: 1.25;
+}

@@ -256,15 +256,17 @@ export default class AccountMapSearch extends NavigationMixin(LightningElement) 
         const lngSpan = maxLng - minLng;
         const maxSpan = Math.max(latSpan, lngSpan);
         
-        // Determine zoom level based on span
-        // These thresholds are approximate and tuned for typical city/regional views
-        if (maxSpan <= 0.01) return '14';  // Very close together (neighborhood)
-        if (maxSpan <= 0.05) return '12';  // Close together (few miles)
-        if (maxSpan <= 0.1) return '11';   // Moderate spread (city area)
-        if (maxSpan <= 0.5) return '10';   // Wider spread (metropolitan area)
-        if (maxSpan <= 1.0) return '9';    // Large area (multiple cities)
-        if (maxSpan <= 2.0) return '8';    // Very large area (region)
-        return '7';                         // Extremely large area (state level)
+        // Determine zoom level based on span - adjusted to zoom out more to show all pins
+        // Lower numbers = more zoomed out, showing larger area
+        if (maxSpan <= 0.005) return '13';  // Very close together (few blocks)
+        if (maxSpan <= 0.01) return '12';   // Close together (neighborhood)
+        if (maxSpan <= 0.03) return '11';   // Few miles apart
+        if (maxSpan <= 0.08) return '10';   // City area
+        if (maxSpan <= 0.2) return '9';     // Metropolitan area
+        if (maxSpan <= 0.5) return '8';     // Large metro region
+        if (maxSpan <= 1.0) return '7';     // Multiple cities
+        if (maxSpan <= 2.0) return '6';     // State region
+        return '5';                          // Multi-state area
     }
 
     get centerLocation() {

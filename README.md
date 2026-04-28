@@ -763,4 +763,4 @@ Built with:
 **Documentation Version**: 1.0  
 **Last Updated**: April 27, 2026  
 **Component Version**: 1.0  
-**Author**: Salesforce Development Team
+**Author**: Brian Murphy, b.murphy@salesforce.com

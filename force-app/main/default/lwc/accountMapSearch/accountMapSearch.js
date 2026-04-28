@@ -234,7 +234,37 @@ export default class AccountMapSearch extends NavigationMixin(LightningElement) 
     }
 
     get mapZoomLevel() {
-        return this.accounts.length === 1 ? '15' : '10';
+        if (this.accounts.length === 0) {
+            return '10';
+        }
+        
+        if (this.accounts.length === 1) {
+            return '15';
+        }
+        
+        // Calculate the geographic bounds
+        const lats = this.accounts.map(acc => acc.latitude);
+        const lngs = this.accounts.map(acc => acc.longitude);
+        
+        const maxLat = Math.max(...lats);
+        const minLat = Math.min(...lats);
+        const maxLng = Math.max(...lngs);
+        const minLng = Math.min(...lngs);
+        
+        // Calculate the span (difference between max and min)
+        const latSpan = maxLat - minLat;
+        const lngSpan = maxLng - minLng;
+        const maxSpan = Math.max(latSpan, lngSpan);
+        
+        // Determine zoom level based on span
+        // These thresholds are approximate and tuned for typical city/regional views
+        if (maxSpan <= 0.01) return '14';  // Very close together (neighborhood)
+        if (maxSpan <= 0.05) return '12';  // Close together (few miles)
+        if (maxSpan <= 0.1) return '11';   // Moderate spread (city area)
+        if (maxSpan <= 0.5) return '10';   // Wider spread (metropolitan area)
+        if (maxSpan <= 1.0) return '9';    // Large area (multiple cities)
+        if (maxSpan <= 2.0) return '8';    // Very large area (region)
+        return '7';                         // Extremely large area (state level)
     }
 
     get centerLocation() {
@@ -242,11 +272,20 @@ export default class AccountMapSearch extends NavigationMixin(LightningElement) 
             return { Latitude: 37.7749, Longitude: -122.4194 }; // Default to San Francisco
         }
         
-        // Calculate center point of all markers
-        const avgLat = this.accounts.reduce((sum, acc) => sum + acc.latitude, 0) / this.accounts.length;
-        const avgLng = this.accounts.reduce((sum, acc) => sum + acc.longitude, 0) / this.accounts.length;
+        // Calculate the geographic center based on bounds
+        const lats = this.accounts.map(acc => acc.latitude);
+        const lngs = this.accounts.map(acc => acc.longitude);
         
-        return { Latitude: avgLat, Longitude: avgLng };
+        const maxLat = Math.max(...lats);
+        const minLat = Math.min(...lats);
+        const maxLng = Math.max(...lngs);
+        const minLng = Math.min(...lngs);
+        
+        // Center is the midpoint of the bounds
+        const centerLat = (maxLat + minLat) / 2;
+        const centerLng = (maxLng + minLng) / 2;
+        
+        return { Latitude: centerLat, Longitude: centerLng };
     }
 
     get showMap() {

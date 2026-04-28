@@ -1,7 +1,14 @@
 .map-container {
-    height: 500px;
+    height: 450px;
     width: 100%;
     padding: 1rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.map-container lightning-map {
+    height: 100%;
+    display: block;
 }
 
 .table-row {

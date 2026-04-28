@@ -1,4 +1,4 @@
-# Account Map Search Component - Complete Documentation
+# Account Map Search Component
 
 A Lightning Web Component that enables users to search for service provider accounts and display them on an interactive map with color-coded indicators.<br><br>
 
